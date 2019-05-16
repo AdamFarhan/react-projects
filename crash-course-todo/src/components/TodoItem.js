@@ -9,10 +9,20 @@ export class TodoItem extends React.Component{
             textDecoration: this.props.todo.isCompleted ? 'line-through' : 'none'
         }
     }
+
     render(){
+        const { id, title } = this.props.todo;
         return (
             <div style={this.getStyle()}>
-                <p>{ this.props.todo.title }</p>
+                <p>
+                    {/*this onchange function runs the markComplete function in the parent component Todos */ }
+                    <input
+                        type="checkbox"
+                        onChange={this.props.markComplete.bind(this, id)}/>
+                    {' '}
+                    { title }
+                    <button style={btnStyle}
+                            onClick={this.props.delTodo.bind(this, id)}>x</button></p>
             </div>
         )
     }
@@ -20,6 +30,16 @@ export class TodoItem extends React.Component{
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired
+}
+
+const btnStyle = {
+    background: 'red',
+    color: 'white',
+    border: 'none',
+    borderRadius: '50%',
+    padding: '5px 9px',
+    cursor: 'pointer',
+    float: 'right'
 }
 
 
