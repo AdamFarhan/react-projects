@@ -1,5 +1,5 @@
 import React from 'react';
-const UserInput = () =>{
+const UserInput = (props) =>{
     const style = {
         background: '#0f0e11',
         backgroundClip: 'padding-box',
@@ -13,7 +13,7 @@ const UserInput = () =>{
     }
     return(
         <div className="UserInput">
-            <input type="text" style={style}/>
+            <input type="text" style={style} onChange={props.changeHandler} value={props.startValue}/>
         </div>
     )
 }
