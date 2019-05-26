@@ -53,22 +53,12 @@ class App extends Component {
     if(this.state.showPeople){
       people = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, "Max!")}
-            changed={this.nameChangedHandler}
-          >
-            My Hobbies: Racing
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-          />
+        {/* We're using JS so we don't need any funky ngFor stuff
+            We can create repeated content with the JS map function
+            (map is kinda like an $.each statement from jquery) */}
+        {this.state.persons.map(person => {
+          return <Person name={person.name} age={person.age}/>
+        })}
         </div>
       );
     }
