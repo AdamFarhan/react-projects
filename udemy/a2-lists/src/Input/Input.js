@@ -14,7 +14,7 @@ const Input = (props) =>{
   }
   return(
     <div className="Input">
-      <input type="text" onChange={props.change} style={style}/>
+      <input type="text" onChange={props.change} style={style} value={props.val}/>
     </div>
   );
 }
