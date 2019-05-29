@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import './App.css';
 import Person from './Person/Person';
 
@@ -110,15 +110,19 @@ class App extends Component {
       paraClasses.push('bold'); //classes = ['bold']
     }
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={paraClasses.join(' ')}>This is really working!</p>
-        <button 
-          style={style}
-          onClick={() => this.togglePeopleHandler()}>Toggle People</button>
-        {people}
+      // To use advanced Radium functions lke media queries, we need to 
+      // wrap our entire application in <StyleRoot></StyleRoot>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App</h1>
+          <p className={paraClasses.join(' ')}>This is really working!</p>
+          <button 
+            style={style}
+            onClick={() => this.togglePeopleHandler()}>Toggle People</button>
+          {people}
 
-      </div>
+        </div>
+      </StyleRoot>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
