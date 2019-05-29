@@ -91,10 +91,19 @@ class App extends Component {
 
       style.backgroundColor = 'red';
     }
+
+    //returns 1 string ("red bold")
+    const paraClasses = [];
+    if(this.state.persons.length <= 2){
+      paraClasses.push('red'); //classes = ['red']
+    }
+    if(this.state.persons.length <= 1){
+      paraClasses.push('bold'); //classes = ['bold']
+    }
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={paraClasses.join(' ')}>This is really working!</p>
         <button 
           style={style}
           onClick={() => this.togglePeopleHandler()}>Toggle People</button>
