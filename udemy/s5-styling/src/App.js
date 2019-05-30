@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -96,13 +96,13 @@ class App extends Component {
     //returns 1 string ("red bold")
     const paraClasses = [];
     if(this.state.persons.length <= 2){
-      paraClasses.push('red'); //classes = ['red']
+      paraClasses.push(classes.red); //classes = ['red']
     }
     if(this.state.persons.length <= 1){
-      paraClasses.push('bold'); //classes = ['bold']
+      paraClasses.push(classes.bold); //classes = ['bold']
     }
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={paraClasses.join(' ')}>This is really working!</p>
         <button 
