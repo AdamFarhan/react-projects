@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../../components/People/Person/Person';
-
+import People from '../../components/People/People';
+import Cockpit from '../../components/Cockpit/Cockpit';
 class App extends Component {
   state = {
     persons: [
@@ -59,47 +59,22 @@ class App extends Component {
 
   render() {
     let people = null;
-    let btnClass = '';
     if(this.state.showPeople){
       people = (
-        <div>
-        {/* We're using JS so we don't need any funky ngFor stuff
-            We can create repeated content with the JS map function
-            (map is kinda like an $.each statement from jquery) */}
-        {this.state.persons.map((person, index) => {
-          // the Key prop is super important
-          // it allows React to quickly find the element without
-          // having to rerender the whole DOM
-          // whenever you dynamically create a component, add a key
-          return <Person
-                  key={person.id}
-                  click={() => this.deletePersonHandler(index)}
-                  name={person.name}
-                  age={person.age}
-                  changed={(e) => this.nameChangedHandler(e, person.id)}/>
-        })}
-        </div>
+        <People
+          persons = {this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler} />
       );
-      btnClass = classes.Red;
     }
 
-    //returns 1 string ("red bold")
-    const paraClasses = [];
-    if(this.state.persons.length <= 2){
-      paraClasses.push(classes.red); //classes = ['red']
-    }
-    if(this.state.persons.length <= 1){
-      paraClasses.push(classes.bold); //classes = ['bold']
-    }
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={paraClasses.join(' ')}>This is really working!</p>
-        <button
-          className={btnClass}
-          onClick={() => this.togglePeopleHandler()}>Toggle People</button>
+        <Cockpit 
+          showPersons={this.state.showPeople}
+          persons={this.state.persons}
+          clicked={this.togglePeopleHandler} />
         {people}
-
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
