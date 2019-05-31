@@ -29,13 +29,13 @@ class App extends Component {
     const changeIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-    console.log(changeIndex);
+    //console.log(changeIndex);
 
     // use a spread function to create a copy person
     const person = {
       ...this.state.persons[changeIndex]
     };
-    console.log(person);
+    //console.log(person);
 
     // update the name value with the value from the input
     person.name = e.target.value;
@@ -44,7 +44,7 @@ class App extends Component {
     // we replace the change target with our new temp person
     const people = [...this.state.persons];
     people[changeIndex] = person;
-    console.log(people);
+    //console.log(people);
 
     //set state back to our modified array
     this.setState({

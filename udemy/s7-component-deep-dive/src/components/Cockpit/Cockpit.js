@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 const cockpit = (props) => {
+    useEffect(() => {
+      console.log('[Cockpit.js] useEffect');
+      setTimeout(()=>{
+        alert("Saved data");
+      }, 1000);
+    }, []);
     //returns 1 string ("red bold")
     const paraClasses = [];
     let btnClass = '';
