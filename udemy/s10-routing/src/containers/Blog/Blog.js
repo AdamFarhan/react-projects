@@ -11,7 +11,7 @@ class Blog extends Component {
         selectedPostId: null
     };
     componentDidMount() {
-        axios.get('/posts')
+        axios.get('https://jsonplaceholder.typicode.com/posts')
              .then(response => {
                  const tempPosts = response.data.slice(0,4);
                  const updatedPosts = tempPosts.map(post => {
