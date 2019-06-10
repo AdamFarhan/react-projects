@@ -1,49 +1,37 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 import './Blog.css';
-
+import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost';
 class Blog extends Component {
-    state = {
-        posts: [],
-        selectedPostId: null
-    };
-    componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-             .then(response => {
-                 const tempPosts = response.data.slice(0,4);
-                 const updatedPosts = tempPosts.map(post => {
-                     return {...post, author: 'Max'}
-                 })
-                 this.setState({posts: updatedPosts});
-                 //console.log(response);
-             })
-             .catch(error => {
-                 console.log(error);
-             });
 
-    }
-    postClickHandler = (id) => {
-        this.setState({selectedPostId: id});
-    }
-    render () {
+    render() {
         console.log('[Blog.js] render()');
-        const posts = this.state.posts.map(post => {
-            return <Post 
-                    key={post.id} 
-                    title={post.title} 
-                    author={post.author}
-                    clicked={() => this.postClickHandler(post.id)}/>
-        });
+        
+        
         return (
             <div className="Blog">
                 <header>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/new-post">New Post</a></li>
+                            {/* instead of a tags, React-Router wants us to use Link tags
+                                Links are essentailly the same, but prevent the whole app from reloading (bad!)
+                                They require a to prop, which can either be a string, or a javascript object
+                                If you send a string, it's just the pathname */}
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to={{
+                                pathname: '/new-post',
+                                hash: '#submit',
+                                search: '?quick-submit=true'
+                            }}>New Post</Link></li>
                         </ul>
                     </nav>
                 </header>
+            {/* The render method here is mostly used for quick little inserts
+                <Route path="/" exact render={() => <h1>Home</h1>} /> */}
+            {/* For components, use the component attribute */}
+            <Route path="/" exact component={Posts} />
+            <Route path="/new-post" component={NewPost} />
             </div>
         );
     }
