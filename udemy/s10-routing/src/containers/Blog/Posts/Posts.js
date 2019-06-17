@@ -30,14 +30,14 @@ class Posts extends React.Component {
 
     postClickHandler = (id) => {
         this.props.history.push({
-            pathname: '/' + id
+            pathname: '/posts/' + id
         });
-        //this.props.history.push('/'+id);
+        //this.props.history.push('/posts'+id);
     }
     render() {
         const posts = this.state.posts.map(post => {
             return( 
-                    // <Link to={'/' + post.id} key={post.id}>
+                    // <Link to={'/psts' + post.id} key={post.id}>
                         <Post 
                         title={post.title} 
                         author={post.author}
@@ -50,7 +50,7 @@ class Posts extends React.Component {
                 <section className="Posts">
                     {posts}
                 </section>
-                <Route path="/:id" exact component={FullPost} />
+                <Route path={this.props.match.url + "/:id"} exact component={FullPost} />
             </div>
         )
     }
