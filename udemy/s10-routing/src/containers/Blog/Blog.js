@@ -4,7 +4,9 @@ import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 class Blog extends Component {
-
+    state = {
+        auth: false
+    }
     render() {
         console.log('[Blog.js] render()');
         
@@ -35,9 +37,13 @@ class Blog extends Component {
             {/* The Switch component tells React Router to only show the first route
                 that matches our url. */}
             <Switch>
-                <Route path="/new-post" component={NewPost} />
+                {/* If a route is conditional, you CANNOT access that url, unless the condition is true */}
+                {this.state.auth && <Route path="/new-post" component={NewPost} />}
                 <Route path="/posts" component={Posts} />
                 <Redirect from="/" to="/posts" />
+                {/* Not providing a path for Route means it will handle any other case that's not currently handled
+                    (404 errors) */}
+                {/* <Route render={() => <h1>404 error</h1>} /> */}
             </Switch>
             </div>
         );
