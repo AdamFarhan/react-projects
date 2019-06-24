@@ -17,6 +17,7 @@ class ContactData extends React.Component {
 
     orderHandler = (e) => {
         e.preventDefault();
+        console.log(this.props);
         this.setState({loading: true});
         //alert("Purchase Successful!");
         const order ={
