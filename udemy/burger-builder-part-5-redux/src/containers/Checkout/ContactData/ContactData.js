@@ -5,6 +5,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import classes from './ContactData.css';
 import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 class ContactData extends React.Component {
     state ={
         orderForm: {
@@ -183,4 +184,11 @@ class ContactData extends React.Component {
     }
 }
 
-export default withRouter(ContactData);
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(ContactData));
