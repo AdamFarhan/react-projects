@@ -1,0 +1,45 @@
+export const INCREMENT = 'INCREMENT';
+export const DECREMENT = 'DECREMENT';
+export const ADD_COUNTER = 'ADD_COUNTER';
+export const SUBTRACT_COUNTER = 'SUBTRACT_COUNTER';
+export const DELETE_RESULT = 'DELETE_RESULT'
+export const STORE_RESULT = 'STORE_RESULT'
+
+export const increment = () => {
+    return {
+        type: INCREMENT
+    }
+};
+
+export const decrement = () => {
+    return {
+        type: DECREMENT
+    }
+}
+
+export const addCounter = (val) => {
+    return {
+        type: ADD_COUNTER,
+        value: val
+    }
+}
+export const subtractCounter = (val) => {
+    return {
+        type: SUBTRACT_COUNTER,
+        value: val
+    }
+}
+
+export const storeResult = (result) => {
+    return {
+        type: STORE_RESULT,
+        result: result
+    }
+}
+
+export const deleteResult = (id) => {
+    return {
+        type: DELETE_RESULT,
+        id: id
+    }
+}
